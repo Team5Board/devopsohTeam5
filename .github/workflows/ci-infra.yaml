@@ -37,9 +37,7 @@ jobs:
       - uses: azure/login@v1
         name: Sign in to Azure
         with:
-          client-id: f25858c4-29ae-4373-89f9-0431d08d8fa3
-          tenant-id: c7e4f824-054c-4bce-bbde-012109def273
-          subscription-id: 75c320d5-3c2e-42a2-824c-67c6099129fd
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: azure/arm-deploy@v1
         name: Run preflight validation
         with:
