@@ -6,5 +6,4 @@ jobs:
     steps:
       - name: Linterine
       - uses: actions/checkout@v3
-      - script: |
-          az bicep build --file iac/bicep/main.bicep
+      - run: az bicep build --file iac/bicep/main.bicep
