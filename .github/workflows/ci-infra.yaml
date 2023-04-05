@@ -38,6 +38,12 @@ jobs:
         name: Sign in to Azure
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: Azure/CLI@v1
+        with:
+          inlineScript: |
+            #!/bin/bash
+            az deployment sub validate --location westeurope
+            echo "Azure resource group created"
       - uses: azure/arm-deploy@v1
         name: Run preflight validation
         with:
