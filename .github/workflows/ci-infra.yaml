@@ -1,4 +1,7 @@
-on: [pull_request, pull_request_review]
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths: "**.bicep"
 
 permissions:
   id-token: write
