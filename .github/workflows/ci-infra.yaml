@@ -37,13 +37,13 @@ jobs:
       - uses: azure/login@v1
         name: Sign in to Azure
         with:
-          client-id: ${{ secrets.ARM_CLIENT_ID }}
-          tenant-id: ${{ secrets.ARM_TENANT_ID }}
-          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          client-id: f25858c4-29ae-4373-89f9-0431d08d8fa3
+          tenant-id: c7e4f824-054c-4bce-bbde-012109def273
+          subscription-id: 75c320d5-3c2e-42a2-824c-67c6099129fd
       - uses: azure/arm-deploy@v1
         name: Run preflight validation
         with:
           deploymentName: ${{ github.run_number }}
-          resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+          resourceGroupName: devopsohteam5staterg
           template: ./iac/bicep/main.bicep
           deploymentMode: Validate
