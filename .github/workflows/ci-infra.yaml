@@ -3,7 +3,7 @@ on:
     types: [assigned, opened, synchronize, reopened]
     branches:
       - "main"
-     paths:
+    paths:
       - "**.bicep"
 
 permissions:
