@@ -42,6 +42,6 @@ jobs:
         name: Run preflight validation
         with:
           deploymentName: ${{ github.run_number }}
-          resourceGroupName: devopsohteam5staterg
+          resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
           template: ./iac/bicep/main.bicep
           deploymentMode: Validate
