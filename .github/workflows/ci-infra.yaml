@@ -1,4 +1,7 @@
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 permissions:
   id-token: write
@@ -58,4 +61,9 @@ jobs:
         with:
           inlineScript: |
             #!/bin/bash
-            az deployment sub create --name "test" --template-file ./iac/bicep/main.bicep --location westeurope
+            az deployment sub what-if --name ${{ github.run_number }} --template-file ./iac/bicep/main.bicep --location westeurope
+      - uses: Azure/CLI@v1
+        with:
+          inlineScript: |
+            #!/bin/bash
+            az deployment sub create --name ${{ github.run_number }} --template-file ./iac/bicep/main.bicep --location westeurope
