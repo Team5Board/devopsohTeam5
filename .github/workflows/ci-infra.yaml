@@ -5,4 +5,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run Bicep linter
-        run: az bicep build --file iac/bicep/main.bicep
+        run: az bicep build --file iac/bicep/*.bicep
