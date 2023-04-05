@@ -1,10 +1,10 @@
 on:
   pull_request_target:
     types: [assigned, opened, synchronize, reopened]
-  branches:
-    - "main"
-  paths:
-    - "**.bicep"
+    branches:
+      - "main"
+    paths:
+      - "**.bicep"
 
 permissions:
   id-token: write
