@@ -47,6 +47,7 @@ jobs:
             #!/bin/bash
             az deployment sub what-if --name ${{ github.run_number }} --template-file ./iac/bicep/main.bicep --location westeurope
   Prefix:
+    runs-on: ubuntu-latest
     outputs:
       # Set output for next job
       RESOURCES_PREFIX: ${{ steps.resources_prefix.outputs.result }}
