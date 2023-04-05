@@ -4,6 +4,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Linterine
       - uses: actions/checkout@v3
       - script: |
           az bicep build --file iac/bicep/main.bicep
