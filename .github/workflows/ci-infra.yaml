@@ -6,3 +6,16 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Bicep linter
         run: az bicep build --file iac/bicep/main.bicep
+  prefix:
+    name: "Get Resourse Prefix"
+    outputs:
+      # Set output for next job
+      RESOURCES_PREFIX: ${{ steps.resources_prefix.outputs.result }}
+    steps:
+      # Get RESOURCES_PREFIX based on the repo name
+      - name: Get repo name
+        uses: actions/github-script@v5
+        id: resources_prefix
+        with:
+          result-encoding: string
+          script: return context.repo.repo.toLowerCase()
