@@ -1,7 +1,10 @@
 on:
-  push:
+  pull_request_target:
+    types: [assigned, opened, synchronize, reopened]
     branches:
-      - main
+      - "main"
+    paths:
+      - "**.bicep"
 
 permissions:
   id-token: write
@@ -11,27 +14,14 @@ env:
   AZURE_RESOURCEGROUP_NAME: ${{ secrets.TFSTATE_RESOURCES_GROUP_NAME }}
 
 jobs:
-  lint:
+  Build:
+    name: "Lint"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run Bicep linter
         run: az bicep build --file iac/bicep/main.bicep
-  prefix:
-    runs-on: ubuntu-latest
-    name: "Get Resourse Prefix"
-    outputs:
-      # Set output for next job
-      RESOURCES_PREFIX: ${{ steps.resources_prefix.outputs.result }}
-    steps:
-      # Get RESOURCES_PREFIX based on the repo name
-      - name: Get repo name
-        uses: actions/github-script@v5
-        id: resources_prefix
-        with:
-          result-encoding: string
-          script: return context.repo.repo.toLowerCase()
-  validate:
+    name: "Validate"
     runs-on: ubuntu-latest
     steps:
       - run: env
@@ -47,9 +37,10 @@ jobs:
             #!/bin/bash
             az deployment sub validate --location westeurope --template-file ./iac/bicep/main.bicep
             echo "Azure resource group created"
-  deploy:
+  Preview:
+    name: "Preview"
     runs-on: ubuntu-latest
-    needs: [lint, validate]
+    needs: [Build]
     steps:
       - uses: actions/checkout@v3
       - uses: elstudio/action-install-azure-cli@v1
@@ -62,6 +53,21 @@ jobs:
           inlineScript: |
             #!/bin/bash
             az deployment sub what-if --name ${{ github.run_number }} --template-file ./iac/bicep/main.bicep --location westeurope
+  Deploy:
+    name: "Deploy"
+    runs-on: ubuntu-latest
+    needs: [Preview, Build]
+    on: 
+      push:
+        branches:
+          - "main"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: elstudio/action-install-azure-cli@v1
+      - uses: azure/login@v1
+        name: Sign in to Azure
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: Azure/CLI@v1
         with:
           inlineScript: |
