@@ -50,9 +50,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: azure/login@v1
-        name: Sign in to Azure
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      name: Sign in to Azure
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: Azure/CLI@v1
         with:
           inlineScript: |
