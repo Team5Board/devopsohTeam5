@@ -32,5 +32,6 @@ open http://localhost:8080/api/docs/user
 npm run test
 ```
 
+
 There will be a junit formatted report file called userprofile-report.xml under the current userprofile directory `/reports` subfolder.
 
