@@ -42,7 +42,7 @@ jobs:
         with:
           inlineScript: |
             #!/bin/bash
-            az deployment sub validate --location westeurope
+            az deployment sub validate --location westeurope --template-file ./iac/bicep/main.bicep
             echo "Azure resource group created"
       - uses: azure/arm-deploy@v1
         name: Run preflight validation
