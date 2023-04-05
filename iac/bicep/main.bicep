@@ -89,6 +89,7 @@ module appService './appService.bicep' = {
     containerRegistryName: containerRegistry.outputs.containerRegistryName
     // userAssignedManagedIdentityId: managedIdentity.outputs.userAssignedManagedIdentityId
     // userAssignedManagedIdentityPrincipalId: managedIdentity.outputs.userAssignedManagedIdentityPrincipalId
+    // test
     containerRegistryAdminUsername: containerRegistry.outputs.containerRegistryAdminUsername
     containerRegistryAdminPassword: containerRegistry.outputs.containerRegistryAdminPassword
     keyVaultName: keyVault.outputs.name
