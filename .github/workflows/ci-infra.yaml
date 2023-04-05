@@ -1,5 +1,9 @@
 on: [push]
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
   AZURE_RESOURCEGROUP_NAME: ${{ secrets.TFSTATE_RESOURCES_GROUP_NAME }}
   ENVIRONMENT_TYPE: Test
