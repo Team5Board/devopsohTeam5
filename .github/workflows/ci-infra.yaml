@@ -46,7 +46,7 @@ jobs:
   Preview:
     name: "Preview"
     runs-on: ubuntu-latest
-    needs: [Build, Preview]
+    needs: [Build, Prefix]
     steps:
       - uses: actions/checkout@v3
       - uses: elstudio/action-install-azure-cli@v1
