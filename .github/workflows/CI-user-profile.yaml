@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./apis/userprofile
+        working-directory: apis/userprofile/
     strategy:
       matrix:
         node-version: [18.x]
@@ -26,6 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: apis/userprofile/package-lock.json
     - run: npm install
     - run: npm lint
     - run: npm run test
