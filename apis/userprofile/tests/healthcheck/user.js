@@ -35,7 +35,7 @@ Test('/healthcheck/user', function (t) {
             Mockgen().requests({
                 path: '/healthcheck/user',
                 operation: 'get'
-            }, function (mock, err) {
+            }, function (err, mock) {
                 var request;
                 t.error(err);
                 t.ok(mock);
@@ -59,7 +59,7 @@ Test('/healthcheck/user', function (t) {
                         request = request.set(headerName, mock.request.headers[headerName]);
                     });
                 }
-                request.end(function (res, err) {
+                request.end(function (err, res) {
                     t.error(err, 'No error');
                     t.ok(res.statusCode === 200, 'Ok response status');
                     var Validator = require('is-my-json-valid');
