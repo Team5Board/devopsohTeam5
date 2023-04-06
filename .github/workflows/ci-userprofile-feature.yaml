@@ -7,10 +7,7 @@ on:
     paths:
       - apis/userprofile/**
 
-permissions:
-  contents: read
-  issues: write
-  repository-projects: write
+permissions: write-all
 
 jobs:
   build:
