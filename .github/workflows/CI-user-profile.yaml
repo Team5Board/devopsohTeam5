@@ -38,4 +38,4 @@ jobs:
         PR_NUMBER: ${{ github.event.number }}
         GH_TOKEN: ${{ github.token }}
       run: |
-        gh pr comment $PR_NUMBER --body "Yelco"
+        gh pr comment $PR_NUMBER --body "Test details: [Run #${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
