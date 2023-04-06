@@ -1,0 +1,42 @@
+name: UserProfile CI - Feature
+
+on:
+  workflow_dispatch:
+    branch:
+      - feature/*
+    paths:
+      - apis/userprofile/**
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apis/userprofile/
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: apis/userprofile/package-lock.json
+      - run: npm install
+        working-directory: apis/userprofile
+      - run: npm run test
+        working-directory: apis/userprofile
+      - name: Step To run on failure
+        if: ${{ failure() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --title "I found a bug" --body "Nothing works" --assignee @me
