@@ -10,7 +10,7 @@ on:
 permissions:
   contents: read
   issues: write
-  repository-projects: [read, write]
+  repository-projects: write
 
 jobs:
   build:
