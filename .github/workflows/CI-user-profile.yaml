@@ -28,5 +28,8 @@ jobs:
         cache: 'npm'
         cache-dependency-path: apis/userprofile/package-lock.json
     - run: npm install
+        working-directory: apis/userprofile
     - run: npm lint
+        working-directory: apis/userprofile
     - run: npm run test
+        working-directory: apis/userprofile
