@@ -37,5 +37,5 @@ jobs:
       - name: Step To run on failure
         if: ${{ failure() }}
         env:
-          GH_TOKEN: ${{ secret.PAT_PERSONAL }}
+          GH_TOKEN: ${{ secrets.PAT_PERSONAL }}
         run: gh issue create --title "I found a bug" --body "Nothing works" --project "Team5BoardOrg" --assignee "@me"
