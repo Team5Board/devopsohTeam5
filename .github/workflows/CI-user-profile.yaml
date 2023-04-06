@@ -38,4 +38,4 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh pr comment $PR_NUMBER --body-file ./.github/workflows/unit-test-failure.md
+          gh pr comment $PR_NUMBER --body-file unit-test-failure.md
