@@ -59,7 +59,7 @@ Test('/healthcheck/user', function (t) {
                         request = request.set(headerName, mock.request.headers[headerName]);
                     });
                 }
-                request.end(function (err, res) {
+                request.end(function (res, err) {
                     t.error(err, 'No error');
                     t.ok(res.statusCode === 200, 'Ok response status');
                     var Validator = require('is-my-json-valid');
