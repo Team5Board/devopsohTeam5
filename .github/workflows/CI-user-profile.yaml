@@ -36,5 +36,6 @@ jobs:
       if: ${{ failure() }}
       env:
         PR_NUMBER: ${{ github.event.number }}
+        GH_TOKEN:  ${{ github.token }}
       run: |
         gh pr comment $PR_NUMBER --body "Yelco"
