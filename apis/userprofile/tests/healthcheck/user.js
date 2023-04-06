@@ -35,7 +35,7 @@ Test('/healthcheck/user', function (t) {
             Mockgen().requests({
                 path: '/healthcheck/user',
                 operation: 'get'
-            }, function (err, mock) {
+            }, function (mock, err) {
                 var request;
                 t.error(err);
                 t.ok(mock);
