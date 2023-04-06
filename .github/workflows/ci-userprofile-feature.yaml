@@ -36,17 +36,4 @@ jobs:
         if: ${{ failure() }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh issue create --title "I found a bug" --body "Nothing works"
-      - name: Step Edit
-        if: ${{ failure() }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh issue edit 30 --add-project "Team5Board2"
-      - name: Step Edit 2
-        if: ${{ failure() }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh issue edit 30 --add-project "Team5Board"
-      - name: Print
-        if: ${{ failure() }}
-        run: echo ${{ toJson(steps) }}
+        run: gh issue create --title "I found a bug" --body "Nothing works" --project "Team5BoardOrg" --assignee "@me"
