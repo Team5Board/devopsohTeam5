@@ -36,5 +36,4 @@ jobs:
         if: ${{ failure() }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          gh issue create --title "I found a bug" --body "Nothing works" --project ManuelRios94/Team5Board2
+        run: gh auth refresh -s project && gh issue create --title "I found a bug" --body "Nothing works" --project Team5Board2
