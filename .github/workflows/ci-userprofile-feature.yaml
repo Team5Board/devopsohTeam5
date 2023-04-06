@@ -37,4 +37,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh issue create --title "I found a bug" --body "Nothing works" --project "Team5Board"
+          gh issue create --title "I found a bug" --body "Nothing works" --project Team5Board
