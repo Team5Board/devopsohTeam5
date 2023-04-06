@@ -38,7 +38,7 @@ jobs:
         PR_NUMBER: ${{ github.event.number }}
         GH_TOKEN: ${{ github.token }}
       run: |
-        gh pr comment $PR_NUMBER --body "Unit Test `failure`
+        gh pr comment $PR_NUMBER --body "Unit Test failure
           <details>
           <summary>Workflow details</summary>
           Workflow name: `${{ github.workflow }}`
